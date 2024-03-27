@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+
+    background-color: blue;
+}
+
+main {
+    display: flex;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+
+    background-image: url(../img/wood_plank.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 100vh;
+    width: 25vw;
+}
+
+.cookie-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cookie {
+
+}
+
+.count-container {
+    display: flex;
+    justify-content: center;
+
+    position: absolute;
+    text-align: center;
+    width: 20vw;
+
+    background-color: rgba(128, 128, 128, 0.596);
+}
+
+#count {
+    font-size: 3em;
+}
+
+.gestion-container {
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url(../img/blue_wall.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -250px;
+
+    display: flex;
+    justify-content: right;
+}
+
+.shop-section {
+    background-image: url(../img/wood_plank.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 20vw;
+    height: 100vh;
+}
+
+.shop-title {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.596);
+}
+
+#cookie.clicked {
+    transform: scale(0.9);
+    transition: transform 0.05s ease;
+}
