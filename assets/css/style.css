@@ -28,10 +28,6 @@ main {
     justify-content: center;
 }
 
-#cookie {
-
-}
-
 .count-container {
     display: flex;
     justify-content: center;
@@ -69,13 +65,32 @@ main {
     height: 100vh;
 }
 
+#cookie.clicked {
+    transform: scale(0.9);
+    transition: transform 0.05s ease;
+}
+
 .shop-title {
     display: flex;
     justify-content: center;
     background-color: rgba(128, 128, 128, 0.596);
 }
 
-#cookie.clicked {
-    transform: scale(0.9);
-    transition: transform 0.05s ease;
+.article-name {
+    margin-right: 175px;
+}
+
+.shop-article {
+    display: flex;
+
+    align-items: center;
+    background-color: rgb(136, 136, 136);
+
+    margin: 15px 15px;
+}
+
+.shop-img {
+    width: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
