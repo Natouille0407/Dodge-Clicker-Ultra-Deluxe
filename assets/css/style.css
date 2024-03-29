@@ -39,13 +39,18 @@ main {
 .count-container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
     position: absolute;
     text-align: center;
     width: 20vw;
-    
-    background: rgb(255,0,196);
-    background: linear-gradient(90deg, rgba(255,0,196,0.5760504885547969) 0%, rgba(156,0,255,0.6824930655856092) 100%);
+
+    background: rgb(255, 0, 196);
+    background: linear-gradient(90deg, rgba(255, 0, 196, 0.5760504885547969) 0%, rgba(156, 0, 255, 0.6824930655856092) 100%);
+}
+
+.count-container p {
+    font-size: 1.5em;
 }
 
 #count {
@@ -63,7 +68,7 @@ main {
 video {
     position: absolute;
     top: 0;
-    left: -100px;
+    left: 0;
     min-width: 100%;
     min-height: 100%;
     width: auto;
@@ -85,6 +90,11 @@ video {
     height: 100vh;
 }
 
+#cookie:hover {
+    transform: scale(1.09);
+    transition: transform 0.05s ease;
+}
+
 #cookie.clicked {
     transform: scale(0.9);
     transition: transform 0.05s ease;
@@ -93,9 +103,9 @@ video {
 .shop-title {
     display: flex;
     justify-content: center;
-  background: rgb(255,0,196);
-    background: linear-gradient(90deg, rgba(255,0,196,0.5760504885547969) 0%, rgba(156,0,255,0.6824930655856092) 100%);}
-
+    background: rgb(255, 0, 196);
+    background: linear-gradient(90deg, rgba(255, 0, 196, 0.5760504885547969) 0%, rgba(156, 0, 255, 0.6824930655856092) 100%);
+}
 
 .shop-article {
     display: flex;
@@ -106,6 +116,11 @@ video {
     border-radius: 15px;
 
     margin: 25px 15px;
+}
+
+.shop-article:hover {
+    transform: scale(1.05);
+    transition: transform 0.05s ease;
 }
 
 .shop-img {
