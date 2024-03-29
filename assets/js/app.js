@@ -26,5 +26,10 @@ function curseurClick() {
     }
 }
 
+function gameEarn(number) {
+    count = count + number
+    countDisplay.textContent = Math.trunc(count);
+}
+
 cookie.addEventListener("click", cookieClick);
 curseurBtn.addEventListener("click", curseurClick);
