@@ -132,3 +132,12 @@ video {
 .price {
     margin-right: 5px;
 }
+
+.locked {
+    border: 2px solid red;
+    color: red;
+}
+.unlock {
+    border: 2px solid green;
+    color: green;
+}
