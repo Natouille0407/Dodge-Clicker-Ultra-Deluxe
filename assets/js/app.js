@@ -110,6 +110,26 @@ function gameEarn(number) {
     updateStorage();
 }
 
+function cookieClick() {
+    count += multiplier;
+    updateCountDisplay();
+    updateStorage();
+    if (count > curseurPrice) {
+        curseurBtn.classList.add('unlock')
+    } else {
+        curseurBtn.classList.remove('unlock')
+    }
+    if (count > pickPrice) {
+        pickBtn.classList.add('unlock')
+    } else {
+        pickBtn.classList.remove('unlock')
+    }
+    cookie.classList.add("clicked");
+    setTimeout(() => {
+        cookie.classList.remove("clicked");
+    }, 200);
+}
+
 cookie.addEventListener("click", cookieClick);
 curseurBtn.addEventListener("click", curseurClick);
 pickBtn.addEventListener("click", pickaxeClick)
