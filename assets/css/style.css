@@ -141,3 +141,13 @@ video {
     border: 2px solid green;
     color: green;
 }
+
+.graph-section {
+    position: relative;
+    top: 46%;
+
+    width: 75%;
+    height:500px;
+
+    background-color: rgba(0, 0, 0, 0.20);
+}
