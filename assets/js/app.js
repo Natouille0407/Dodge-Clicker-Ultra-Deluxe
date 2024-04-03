@@ -56,10 +56,10 @@ async function createLineChart() {
                 datasets: [{
                     label: 'Bitcoin Value',
                     data: prices,
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderColor: 'rgba(156, 0, 255, 1)',
                     borderWidth: 1,
                     fill: true,
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)', // Couleur de remplissage avec une opacité de 0.5
+                    backgroundColor: 'rgb(255, 0, 196, 0.5)', // Couleur de remplissage avec une opacité de 0.5
                 }]
             },
             options: {
@@ -133,13 +133,11 @@ function cookieClick() {
     count += multiplier;
     updateCountDisplay();
     updateStorage();
-
     cookie.classList.add("clicked");
     setTimeout(() => {
         cookie.classList.remove("clicked");
     }, 200);
 }
-
 
 function curseurClick() {
     if (count >= curseurPrice) {
@@ -173,10 +171,13 @@ function gameEarn(number) {
     updateStorage();
 }
 
-function cookieClick() {
-    count += multiplier;
-    updateCountDisplay();
-    updateStorage();
+
+
+cookie.addEventListener("click", cookieClick);
+curseurBtn.addEventListener("click", curseurClick);
+pickBtn.addEventListener("click", pickaxeClick)
+
+setInterval(function() {
     if (count > curseurPrice) {
         curseurBtn.classList.add('unlock')
     } else {
@@ -187,15 +188,7 @@ function cookieClick() {
     } else {
         pickBtn.classList.remove('unlock')
     }
-    cookie.classList.add("clicked");
-    setTimeout(() => {
-        cookie.classList.remove("clicked");
-    }, 200);
-}
-
-cookie.addEventListener("click", cookieClick);
-curseurBtn.addEventListener("click", curseurClick);
-pickBtn.addEventListener("click", pickaxeClick)
+}, 1)
 
 // Appel de la fonction pour créer le graphique de ligne
 createLineChart();
