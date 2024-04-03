@@ -105,6 +105,7 @@ video {
     justify-content: center;
     background: rgb(255, 0, 196);
     background: linear-gradient(90deg, rgba(255, 0, 196, 0.5760504885547969) 0%, rgba(156, 0, 255, 0.6824930655856092) 100%);
+    
 }
 
 .shop-article {
@@ -136,10 +137,14 @@ video {
 .locked {
     border: 2px solid red;
     color: red;
+    transition: 0.5s;
 }
+
 .unlock {
-    border: 2px solid green;
-    color: green;
+    border: 2px solid rgb(255, 0, 196);
+    background: linear-gradient(90deg, rgba(255, 0, 196, 0.90) 0%, rgba(156, 0, 255, 0.90) 100%);
+    color: black;
+    transition: 0.5s;
 }
 
 .graph-section {
@@ -147,7 +152,7 @@ video {
     top: 46%;
 
     width: 75%;
-    height:500px;
+    height: 500px;
 
     background-color: rgba(0, 0, 0, 0.20);
 }
