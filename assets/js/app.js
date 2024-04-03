@@ -21,6 +21,69 @@ const curseurPriceDisplay = document.querySelector("#curseur-price");
 const pickBtn = document.querySelector("#pickaxe-btn");
 const pickPriceDisplay = document.querySelector("#pickaxe-price");
 
+// Fonction pour récupérer les données du prix du Bitcoin
+function getBitcoinPriceData() {
+    const url = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3';
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Une erreur s\'est produite lors de la récupération des données du prix du Bitcoin.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data.prices;
+        })
+        .catch(error => {
+            console.error(error.message);
+        });
+}
+
+async function createLineChart() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3');
+        if (!response.ok) {
+            throw new Error('Une erreur s\'est produite lors de la récupération des données du prix du Bitcoin.');
+        }
+        const data = await response.json();
+        const prices = data.prices.map(item => item[1]);
+
+        const ctx = document.getElementById('bitcoinChart').getContext('2d');
+        const bitcoinChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array(prices.length).fill(''), // Créer un tableau vide pour les étiquettes
+                datasets: [{
+                    label: 'Bitcoin Value',
+                    data: prices,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)', // Couleur de remplissage avec une opacité de 0.5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: false, // Cacher l'axe x
+                        ticks: {
+                            display: false // Cacher les étiquettes de l'axe x
+                        }
+                    },
+                    y: {
+                        display: false // Cacher l'axe y
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+
 // stockage des dodge coin
 if (localStorage.getItem('dodge') !== null) {
     count = parseInt(localStorage.getItem('dodge'));
@@ -133,3 +196,6 @@ function cookieClick() {
 cookie.addEventListener("click", cookieClick);
 curseurBtn.addEventListener("click", curseurClick);
 pickBtn.addEventListener("click", pickaxeClick)
+
+// Appel de la fonction pour créer le graphique de ligne
+createLineChart();
