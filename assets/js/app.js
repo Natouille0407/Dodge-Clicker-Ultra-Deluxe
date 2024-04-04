@@ -39,6 +39,12 @@ function getBitcoinPriceData() {
         });
 }
 
+async function fetchBitcoinPrice() {
+    const bitcoinPrice = await getBitcoinPrice();
+    console.log("Prix actuel du Bitcoin :", bitcoinPrice);
+    // Vous pouvez maintenant utiliser la valeur de bitcoinPrice comme vous le souhaitez
+}
+
 async function createLineChart() {
     try {
         const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3');
@@ -164,6 +170,19 @@ function pickaxeClick() {
         setInterval(cookieClick, 1500)
     }
 }
+
+/*function bitClick() {
+    if (count >= curseurPrice) {
+        count -= curseurPrice;
+        curseurPrice += 10 + curseurMultiplier;
+        curseurMultiplier++
+        curseurPriceDisplay.textContent = curseurPrice;
+        clickNb += 1;
+        updateCountDisplay();
+        updateStorage();
+        setInterval(cookieClick, 2500)
+    }
+}*/
 
 function gameEarn(number) {
     count += number;
