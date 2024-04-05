@@ -10,7 +10,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden; /* Empêche le défilement */
-    background-color: black; /* Couleur de fond */
+    background-image: url(../img/blue_wall.jpg);
 }
 
 /* Conteneur principal */
@@ -154,9 +154,7 @@ video {
 /* Section pour le graphique */
 .graph-section {
     width: 99%; /* Prend 99% de la largeur disponible */
-    height: 500px; /* Hauteur fixe */
-
-    background-color: rgba(0, 0, 0, 0.20); /* Couleur de fond transparente */
+    height: 50vh; /* Hauteur fixe */
 }
 
 /* Section pour Bitcoin */
