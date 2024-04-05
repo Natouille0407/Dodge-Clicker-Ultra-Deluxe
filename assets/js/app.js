@@ -12,7 +12,7 @@ let pickPrice = 10;
 let pickMultiplier = 1;
 
 let bitcoinNb = 0;
-let bitcoinPrice = getBitcoinPrice();
+let bitcoinPriceDisplayData = fetchBitcoinPrice();
 
 // recuperation des boutton
 const cookie = document.querySelector("#cookie");
@@ -24,7 +24,8 @@ const curseurPriceDisplay = document.querySelector("#curseur-price");
 const pickBtn = document.querySelector("#pickaxe-btn");
 const pickPriceDisplay = document.querySelector("#pickaxe-price");
 
-const bitcoinBtn = document.querySelector('#bitcoin')
+const bitcoinBtn = document.querySelector('#bitcoin');
+const bitcoinPriceDisplay = document.querySelector('#bitcoinPriceDisplay');
 
 // Fonction pour récupérer les données du prix du Bitcoin
 function getBitcoinPriceData() {
@@ -61,7 +62,7 @@ async function getBitcoinPrice() {
 
 async function fetchBitcoinPrice() {
     const bitcoinPrice = await getBitcoinPrice();
-    console.log(Math.floor(bitcoinPrice));
+    return Math.floor(bitcoinPrice);
     // Vous pouvez maintenant utiliser la valeur de bitcoinPrice comme vous le souhaitez
 }
 
@@ -148,6 +149,10 @@ if (localStorage.getItem('pickNb') !== null) {
     }
 }
 
+// stockage des bitcoin 
+if (localStorage.getItem('bitcoinNb') !== null) {
+    bitcoinNb = parseInt(localStorage.getItem('bitcoinNb'))
+}
 
 function updateStorage() {
     localStorage.setItem('dodge', count);
@@ -155,6 +160,8 @@ function updateStorage() {
     localStorage.setItem('curseurPrice', curseurPrice);
     localStorage.setItem('pickPrice', pickPrice)
     localStorage.setItem('pickNb', pickNb)
+    localStorage.setItem('bitcoinNb', bitcoinNb)
+    localStorage.setItem('bitcoinPrice', bitcoinPrice)
 }
 
 function updateCountDisplay() {
@@ -198,16 +205,20 @@ function pickaxeClick() {
 }
 
 function bitClick() {
-    if (count >= curseurPrice) {
-        count -= curseurPrice;
-        curseurPrice += 10 + curseurMultiplier;
-        curseurMultiplier++
+    if (count >= bitcoinPrice) {
+        count -= bitcoinPrice;
+        bitcoinNb++
         curseurPriceDisplay.textContent = curseurPrice;
-        clickNb += 1;
         updateCountDisplay();
-        updateStorage();
-        setInterval(cookieClick, 2500)
+        bitcoinBtn.classList.add("clicked");
+        setTimeout(() => {
+            bitcoinBtn.classList.remove("clicked");
+        }, 200);
     }
+}
+
+function bitDisplayUpdate() {
+    bitcoinPriceDisplay.textContent = bitcoinPriceDisplayData;
 }
 
 function gameEarn(number) {
@@ -236,5 +247,4 @@ setInterval(function () {
     }
 }, 1)
 
-// Appel de la fonction pour créer le graphique de ligne
-createLineChart();
+bitDisplayUpdate()
