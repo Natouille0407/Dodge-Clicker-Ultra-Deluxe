@@ -11,6 +11,9 @@ let pickNb = 0;
 let pickPrice = 10;
 let pickMultiplier = 1;
 
+let bitcoinNb = 0;
+let bitcoinPrice = getBitcoinPrice();
+
 // recuperation des boutton
 const cookie = document.querySelector("#cookie");
 const countDisplay = document.querySelector("#count");
@@ -20,6 +23,8 @@ const curseurPriceDisplay = document.querySelector("#curseur-price");
 
 const pickBtn = document.querySelector("#pickaxe-btn");
 const pickPriceDisplay = document.querySelector("#pickaxe-price");
+
+const bitcoinBtn = document.querySelector('#bitcoin')
 
 // Fonction pour récupérer les données du prix du Bitcoin
 function getBitcoinPriceData() {
@@ -32,7 +37,7 @@ function getBitcoinPriceData() {
             return response.json();
         })
         .then(data => {
-            return data.prices;
+            bitcoinPrice = data.prices;
         })
         .catch(error => {
             console.error(error.message);
@@ -46,8 +51,8 @@ async function getBitcoinPrice() {
             throw new Error('Une erreur s\'est produite lors de la récupération du prix du Bitcoin.');
         }
         const data = await response.json();
-        const bitcoinPrice = data.data.priceUsd; // Prix du Bitcoin en USD
-        return bitcoinPrice;
+        const dataPrice = data.data.priceUsd; // Prix du Bitcoin en USD
+        bitcoinPrice = Math.floor(dataPrice)
     } catch (error) {
         console.error(error.message);
         return null;
@@ -192,7 +197,7 @@ function pickaxeClick() {
     }
 }
 
-/*function bitClick() {
+function bitClick() {
     if (count >= curseurPrice) {
         count -= curseurPrice;
         curseurPrice += 10 + curseurMultiplier;
@@ -203,7 +208,7 @@ function pickaxeClick() {
         updateStorage();
         setInterval(cookieClick, 2500)
     }
-}*/
+}
 
 function gameEarn(number) {
     count += number;
@@ -215,7 +220,8 @@ function gameEarn(number) {
 
 cookie.addEventListener("click", cookieClick);
 curseurBtn.addEventListener("click", curseurClick);
-pickBtn.addEventListener("click", pickaxeClick)
+pickBtn.addEventListener("click", pickaxeClick);
+bitcoinBtn.addEventListener("click", bitClick);
 
 setInterval(function () {
     if (count > curseurPrice) {
