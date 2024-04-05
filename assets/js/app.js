@@ -39,33 +39,54 @@ function getBitcoinPriceData() {
         });
 }
 
+async function getBitcoinPrice() {
+    try {
+        const response = await fetch('https://api.coincap.io/v2/assets/bitcoin');
+        if (!response.ok) {
+            throw new Error('Une erreur s\'est produite lors de la récupération du prix du Bitcoin.');
+        }
+        const data = await response.json();
+        const bitcoinPrice = data.data.priceUsd; // Prix du Bitcoin en USD
+        return bitcoinPrice;
+    } catch (error) {
+        console.error(error.message);
+        return null;
+    }
+}
+
 async function fetchBitcoinPrice() {
     const bitcoinPrice = await getBitcoinPrice();
-    console.log("Prix actuel du Bitcoin :", bitcoinPrice);
+    console.log(Math.floor(bitcoinPrice));
     // Vous pouvez maintenant utiliser la valeur de bitcoinPrice comme vous le souhaitez
 }
 
 async function createLineChart() {
     try {
-        const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3');
+        const response = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=10');
         if (!response.ok) {
             throw new Error('Une erreur s\'est produite lors de la récupération des données du prix du Bitcoin.');
         }
         const data = await response.json();
-        const prices = data.prices.map(item => item[1]);
+        const prices = data.map(item => parseFloat(item[4])); // Le prix de clôture (Close) est à l'index 4
+
+        // Détruire le graphique existant s'il existe
+        const existingChart = Chart.getChart('bitcoinChart');
+        if (existingChart) {
+            existingChart.destroy();
+        }
 
         const ctx = document.getElementById('bitcoinChart').getContext('2d');
         const bitcoinChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: Array(prices.length).fill(''), // Créer un tableau vide pour les étiquettes
+                labels: Array.from({ length: 10 }, (_, i) => i + 1), // Crée une série de nombres de 1 à 10 pour les labels
                 datasets: [{
                     label: 'Bitcoin Value',
                     data: prices,
                     borderColor: 'rgba(156, 0, 255, 1)',
                     borderWidth: 1,
                     fill: true,
-                    backgroundColor: 'rgb(255, 0, 196, 0.5)', // Couleur de remplissage avec une opacité de 0.5
+                    backgroundColor: 'rgba(255, 0, 196, 0.5)',
                 }]
             },
             options: {
@@ -73,13 +94,10 @@ async function createLineChart() {
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        display: false, // Cacher l'axe x
-                        ticks: {
-                            display: false // Cacher les étiquettes de l'axe x
-                        }
+                        display: true,
                     },
                     y: {
-                        display: false // Cacher l'axe y
+                        display: true
                     }
                 }
             }
@@ -88,6 +106,9 @@ async function createLineChart() {
         console.error(error.message);
     }
 }
+
+// Appel de la fonction pour créer le graphique de ligne
+createLineChart();
 
 
 // stockage des dodge coin
@@ -196,7 +217,7 @@ cookie.addEventListener("click", cookieClick);
 curseurBtn.addEventListener("click", curseurClick);
 pickBtn.addEventListener("click", pickaxeClick)
 
-setInterval(function() {
+setInterval(function () {
     if (count > curseurPrice) {
         curseurBtn.classList.add('unlock')
     } else {
