@@ -1,5 +1,3 @@
-
-// declaration des variable globals
 let count = 0;
 let multiplier = 1;
 
@@ -12,9 +10,7 @@ let pickPrice = 10;
 let pickMultiplier = 1;
 
 let bitcoinNb = 0;
-let bitcoinPriceDisplayData = fetchBitcoinPrice();
 
-// recuperation des boutton
 const cookie = document.querySelector("#cookie");
 const countDisplay = document.querySelector("#count");
 
@@ -27,7 +23,6 @@ const pickPriceDisplay = document.querySelector("#pickaxe-price");
 const bitcoinBtn = document.querySelector('#bitcoin');
 const bitcoinPriceDisplay = document.querySelector('#bitcoinPriceDisplay');
 
-// Fonction pour récupérer les données du prix du Bitcoin
 function getBitcoinPriceData() {
     const url = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3';
     return fetch(url)
@@ -52,18 +47,13 @@ async function getBitcoinPrice() {
             throw new Error('Une erreur s\'est produite lors de la récupération du prix du Bitcoin.');
         }
         const data = await response.json();
-        const dataPrice = data.data.priceUsd; // Prix du Bitcoin en USD
+        const dataPrice = data.data.priceUsd;
         bitcoinPrice = Math.floor(dataPrice)
+        bitcoinPriceDisplay.textContent = "Today Price : " + Math.floor(dataPrice);
     } catch (error) {
         console.error(error.message);
         return null;
     }
-}
-
-async function fetchBitcoinPrice() {
-    const bitcoinPrice = await getBitcoinPrice();
-    return Math.floor(bitcoinPrice);
-    // Vous pouvez maintenant utiliser la valeur de bitcoinPrice comme vous le souhaitez
 }
 
 async function createLineChart() {
@@ -73,9 +63,8 @@ async function createLineChart() {
             throw new Error('Une erreur s\'est produite lors de la récupération des données du prix du Bitcoin.');
         }
         const data = await response.json();
-        const prices = data.map(item => parseFloat(item[4])); // Le prix de clôture (Close) est à l'index 4
+        const prices = data.map(item => parseFloat(item[4]));
 
-        // Détruire le graphique existant s'il existe
         const existingChart = Chart.getChart('bitcoinChart');
         if (existingChart) {
             existingChart.destroy();
@@ -85,7 +74,7 @@ async function createLineChart() {
         const bitcoinChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: Array.from({ length: 10 }, (_, i) => i + 1), // Crée une série de nombres de 1 à 10 pour les labels
+                labels: Array.from({ length: 10 }, (_, i) => i + 1),
                 datasets: [{
                     label: 'Bitcoin Value',
                     data: prices,
@@ -113,17 +102,14 @@ async function createLineChart() {
     }
 }
 
-// Appel de la fonction pour créer le graphique de ligne
 createLineChart();
 
 
-// stockage des dodge coin
 if (localStorage.getItem('dodge') !== null) {
     count = parseInt(localStorage.getItem('dodge'));
     countDisplay.textContent = Math.trunc(count);
 }
 
-// stockage des curseur
 if (localStorage.getItem('curseurPrice') !== null) {
     curseurPrice = parseInt(localStorage.getItem('curseurPrice'));
     curseurPriceDisplay.textContent = Math.trunc(curseurPrice);
@@ -136,7 +122,6 @@ if (localStorage.getItem('clickNb') !== null) {
     }
 }
 
-// stockage de pickaxe
 if (localStorage.getItem('pickPrice') !== null) {
     pickPrice = parseInt(localStorage.getItem('pickPrice'));
     pickPriceDisplay.textContent = Math.trunc(pickPrice);
@@ -149,7 +134,6 @@ if (localStorage.getItem('pickNb') !== null) {
     }
 }
 
-// stockage des bitcoin 
 if (localStorage.getItem('bitcoinNb') !== null) {
     bitcoinNb = parseInt(localStorage.getItem('bitcoinNb'))
 }
@@ -217,17 +201,11 @@ function bitClick() {
     }
 }
 
-function bitDisplayUpdate() {
-    bitcoinPriceDisplay.textContent = bitcoinPriceDisplayData;
-}
-
 function gameEarn(number) {
     count += number;
     updateCountDisplay();
     updateStorage();
 }
-
-
 
 cookie.addEventListener("click", cookieClick);
 curseurBtn.addEventListener("click", curseurClick);
@@ -247,4 +225,4 @@ setInterval(function () {
     }
 }, 1)
 
-bitDisplayUpdate()
+getBitcoinPrice()
