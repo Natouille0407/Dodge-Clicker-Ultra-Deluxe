@@ -1,74 +1,66 @@
-/* Réinitialisation des styles pour inclure la bordure dans la taille totale */
 * {
     box-sizing: border-box;
 }
 
-/* Styles de base pour le corps de la page */
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Empêche le défilement */
+    overflow: hidden;
     background-image: url(../img/blue_wall.jpg);
 }
 
-/* Conteneur principal */
 main {
-    position: relative; /* Position relative pour que les éléments internes puissent être positionnés absolument */
-    display: flex; /* Affichage en flexbox */
+    position: relative;
+    display: flex;
 }
 
-/* Contenu principal */
 .main-content {
     display: flex;
     flex-direction: column;
 
-    background-image: url(../img/wood_plank.png); /* Image de fond */
-    background-repeat: no-repeat; /* Ne pas répéter l'image */
-    background-size: cover; /* Redimensionne l'image pour remplir le conteneur */
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
-    width: 25%; /* Prend 25% de la largeur de la fenêtre */
+    background-image: url(../img/wood_plank.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 25%;
 }
 
-/* Conteneur pour les cookies */
 .cookie-container {
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    height: 100vh;
     display: flex;
-    align-items: center; /* Centre verticalement */
-    justify-content: center; /* Centre horizontalement */
+    align-items: center;
+    justify-content: center;
 }
 
-/* Conteneur pour le compteur de cookies */
 .count-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
 
-    position: absolute; /* Position absolue pour pouvoir le positionner par rapport à son parent */
-    text-align: center; /* Centre le texte */
-    width: 20vw; /* Prend 20% de la largeur de la fenêtre */
-    background: linear-gradient(90deg, rgba(255, 0, 196, 0.5760504885547969) 0%, rgba(156, 0, 255, 0.6824930655856092) 100%); /* Dégradé de couleur en arrière-plan */
+    position: absolute;
+    text-align: center;
+    width: 20vw;
+    background: linear-gradient(90deg, rgba(255, 0, 196, 0.5760504885547969) 0%, rgba(156, 0, 255, 0.6824930655856092) 100%);
 }
 
 .count-container p {
-    font-size: 1.5em; /* Taille de police */
+    font-size: 1.5em;
 }
 
 #count {
-    font-size: 3em; /* Taille de police */
+    font-size: 3em;
 }
 
-/* Conteneur pour la gestion */
 .gestion-container {
-    width: 100vw; /* Prend toute la largeur de la fenêtre */
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    width: 100vw;
+    height: 100vh;
 
     display: flex;
-    justify-content: right; /* Aligne les éléments à droite */
+    justify-content: right;
 }
 
-/* Vidéo en arrière-plan */
 video {
     position: absolute;
     top: 0;
@@ -76,59 +68,53 @@ video {
     min-width: 100%;
     min-height: 100%;
     width: auto;
-    height: 130vh; /* Hauteur augmentée pour couvrir l'écran lors du défilement */
-    z-index: -1; /* Place la vidéo en arrière-plan */
+    height: 130vh;
+    z-index: -1;
 }
 
-/* Styles pour les sections de la boutique */
 .shop-section {
     background-image: url(../img/wood_plank.png);
     background-repeat: no-repeat;
     background-size: cover;
 
-    width: 20vw; /* Prend 20% de la largeur de la fenêtre */
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    width: 20vw;
+    height: 100vh;
 }
 
-/* Effet de survol pour le cookie */
 #cookie:hover {
-    transform: scale(1.09); /* Zoom sur survol */
-    transition: transform 0.05s ease; /* Transition fluide */
+    transform: scale(1.09);
+    transition: transform 0.05s ease;
 }
 
 .clicked {
-    transform: scale(0.9); /* Réduit légèrement la taille lors du clic */
-    transition: transform 0.05s ease; /* Transition fluide */
+    transform: scale(0.9);
+    transition: transform 0.05s ease;
 }
 
-/* Effet de clic pour le cookie */
 #cookie.clicked {
-    transform: scale(0.9); /* Réduit légèrement la taille lors du clic */
-    transition: transform 0.05s ease; /* Transition fluide */
+    transform: scale(0.9);
+    transition: transform 0.05s ease;
 }
 
-/* Titre de la boutique */
 .shop-title {
     display: flex;
     justify-content: center;
     background: rgb(255, 0, 196);
-    background: linear-gradient(90deg, rgba(255, 0, 196, 0.5760504885547969) 0%, rgba(156, 0, 255, 0.6824930655856092) 100%); /* Dégradé de couleur en arrière-plan */
+    background: linear-gradient(90deg, rgba(255, 0, 196, 0.5760504885547969) 0%, rgba(156, 0, 255, 0.6824930655856092) 100%);
 }
 
-/* Articles de la boutique */
 .shop-article {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: rgb(136, 136, 136);
-    border-radius: 15px; /* Coins arrondis */
-    margin: 25px 15px; /* Marge extérieure */
+    border-radius: 15px;
+    margin: 25px 15px;
 }
 
-/* Effet de survol pour les articles de la boutique */
 .shop-article:hover {
-    transform: scale(1.05); /* Zoom sur survol */
-    transition: transform 0.05s ease; /* Transition fluide */
+    transform: scale(1.05);
+    transition: transform 0.05s ease;
 }
 
 .shop-img {
@@ -141,50 +127,53 @@ video {
     margin-right: 5px;
 }
 
-/* Styles pour l'état verrouillé */
 .locked {
-    filter:invert();
+    filter: invert();
     background-color: rgb(0, 195, 255);
     border: 2px solid rgb(0, 156, 204);
-    transition: 0.5s; /* Transition fluide */
+    transition: 0.5s;
 }
 
-/* Styles pour l'état déverrouillé */
 .unlock {
     filter: none;
     border: 2px solid rgb(255, 0, 196);
-    background: linear-gradient(90deg, rgba(255, 0, 196, 0.90) 0%, rgba(156, 0, 255, 0.90) 100%); /* Dégradé de couleur en arrière-plan */
+    background: linear-gradient(90deg, rgba(255, 0, 196, 0.90) 0%, rgba(156, 0, 255, 0.90) 100%);
     color: black;
-    transition: 0.5s; /* Transition fluide */
+    transition: 0.5s;
 }
 
-/* Section pour le graphique */
 .graph-section {
-    width: 100%; /* Prend 99% de la largeur disponible */
-    height: 50vh; /* Hauteur fixe */
+    width: 100%;
+    height: 50vh;
 
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-/* Section pour Bitcoin */
 .bitcoin-section {
-    width: 80vw; /* Prend 80% de la largeur de la fenêtre */
+    width: 80vw;
 
     display: flex;
     flex-direction: column;
 }
 
-/* Conteneur pour Bitcoin */
 .bitcoin-container {
     width: 100%;
-    height: 50%; /* Prend 50% de la hauteur disponible */
+    height: 50%;
 
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
 
-/* Image Bitcoin */
 #bitcoin {
-    width: 7vw; /* Taille relative */
+    width: 7vw;
+    min-width: 100px;
+}
+
+#bitcoinPriceDisplay {
+    color: white;
+    font-size: larger;
+    font-weight: 700;
+
+    margin-left: 20px;
 }
