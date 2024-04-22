@@ -4,84 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Cookie Clicker Deluxe</title>
-    <!-- Lien vers la bibliothèque Chart.js pour les graphiques -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Lien vers la feuille de réinitialisation des styles -->
+
     <link href="assets/css/normalize.css" rel="stylesheet">
-    <!-- Lien vers la feuille de style personnalisée -->
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
+
     <main>
-        
-        <!-- Contenu principal -->
+
         <div class="main-content">
-            <!-- Conteneur pour le compteur de cookies -->
             <div class="count-container">
-                <!-- Compteur de cookies -->
                 <span id="count">0</span>
-                <!-- Nom de la monnaie -->
                 <p>Dodge-Coin</p>
             </div>
-            <!-- Conteneur pour le cookie -->
+
             <div class="cookie-container">
-                <!-- Lien vers le cookie -->
                 <a id="cookie">
-                    <!-- Image du cookie -->
                     <img src="assets/img/cookie.png" alt="cookie">
                 </a>
             </div>
         </div>
 
-        <!-- Section pour Bitcoin -->
         <div class="bitcoin-section">
-            <!-- Conteneur pour Bitcoin -->
+            <p id="bitcoinPriceDisplay"></p>
             <div class="bitcoin-container">
-                <p id="bitcoinPriceDisplay"></p>
-                <!-- Image Bitcoin -->
                 <img id="bitcoin" src="assets/img/Bitcoin.jpg" alt="bitcoin">
             </div>
 
-            <!-- Section pour le graphique Bitcoin -->
             <div class="graph-section">
-                <!-- Canvas pour le graphique -->
                 <canvas id="bitcoinChart"></canvas>
             </div>
         </div>
 
-        <!-- Section pour la boutique -->
         <div class="shop-section">
-            <!-- Titre de la boutique -->
             <div class="shop-title">
                 <h2>Shop</h2>
             </div>
 
-            <!-- Article de la boutique - Curseur -->
             <div class="shop-article locked" id="curseur-btn">
-                <!-- Image du curseur -->
                 <img src="assets/img/curseur.png" class="shop-img">
-                <!-- Nom de l'article -->
                 <h2 class="article-name">Cursor</h2>
-                <!-- Prix de l'article -->
                 <p id="curseur-price" class="price">10</p>
             </div>
 
-            <!-- Article de la boutique - CryptoMinor -->
             <div class="shop-article locked" id="pickaxe-btn">
-                <!-- Image du CryptoMinor -->
                 <img src="assets/img/pickaxe.png" class="shop-img">
-                <!-- Nom de l'article -->
                 <h2 class="article-name">CryptoMinor</h2>
-                <!-- Prix de l'article -->
                 <p id="pickaxe-price" class="price">10</p>
             </div>
 
         </div>
 
     </main>
-    <!-- Script JavaScript -->
+
     <script src="assets/js/app.js"></script>
 </body>
 
