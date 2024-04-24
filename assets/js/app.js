@@ -11,6 +11,9 @@ let pickMultiplier = 1;
 
 let bitcoinNb = 0;
 
+let selectedCrypto = "BTCUSDT";
+let selectedCryptoName = "bitcoin";
+
 const cookie = document.querySelector("#cookie");
 const countDisplay = document.querySelector("#count");
 
@@ -28,7 +31,7 @@ function getBitcoinPriceData() {
     return fetch(url)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Une erreur s\'est produite lors de la récupération des données du prix du Bitcoin.');
+                throw new Error('ERROR');
             }
             return response.json();
         })
@@ -42,9 +45,9 @@ function getBitcoinPriceData() {
 
 async function getBitcoinPrice() {
     try {
-        const response = await fetch('https://api.coincap.io/v2/assets/bitcoin');
+        const response = await fetch('https://api.coincap.io/v2/assets/' + selectedCryptoName);
         if (!response.ok) {
-            throw new Error('Une erreur s\'est produite lors de la récupération du prix du Bitcoin.');
+            throw new Error('ERROR');
         }
         const data = await response.json();
         const dataPrice = data.data.priceUsd;
@@ -58,19 +61,19 @@ async function getBitcoinPrice() {
 
 async function createLineChart() {
     try {
-        const response = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=10');
+        const response = await fetch('https://api.binance.com/api/v3/klines?symbol=' + selectedCrypto + '&interval=1d&limit=10');
         if (!response.ok) {
             throw new Error('Une erreur s\'est produite lors de la récupération des données du prix du Bitcoin.');
         }
         const data = await response.json();
         const prices = data.map(item => parseFloat(item[4]));
 
-        const existingChart = Chart.getChart('bitcoinChart');
+        const existingChart = Chart.getChart('CryptoChart');
         if (existingChart) {
             existingChart.destroy();
         }
 
-        const ctx = document.getElementById('bitcoinChart').getContext('2d');
+        const ctx = document.getElementById('CryptoChart').getContext('2d');
         const bitcoinChart = new Chart(ctx, {
             type: 'line',
             data: {
