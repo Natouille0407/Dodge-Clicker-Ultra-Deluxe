@@ -116,6 +116,7 @@ video {
     background-color: rgb(136, 136, 136);
     border-radius: 15px;
     margin: 25px 15px;
+    font-size: smaller;
 }
 
 .shop-article:hover {
@@ -162,20 +163,44 @@ video {
     flex-direction: column;
 }
 
+.bitcoinInfoDisplay {
+    display: flex;
+    justify-content: space-between;
+}
+
 .bitcoin-container {
-    width: 100%;
+    width: 15%;
     height: 50%;
 
     display: flex;
-    justify-content: left;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.bitcoin-container p {
+    color: white;
+    text-align: center;
+    width: 175px;
+
+    font-size: larger;
+    font-weight: 700;
 }
 
 #bitcoin {
     width: 7vw;
     min-width: 100px;
+    margin-top: 5px;
+    margin-left: 25px;
+}
 
-    margin-left: 50px;
+#bitcoinReverse {
+    width: 7vw;
+    min-width: 100px;
+    margin-top: 5px;
+    margin-left: 25px;
+
+    filter: invert();
 }
 
 #bitcoinPriceDisplay {
@@ -183,7 +208,15 @@ video {
     font-size: larger;
     font-weight: 700;
 
-    margin-left: 20px;
+    margin: 20px;
+}
+
+#bitcoinNbDisplay {
+    color: white;
+    font-size: 1.5em;
+    font-weight: 700;
+
+    margin: 20px;
 }
 
 select {
