@@ -6,8 +6,24 @@ let curseurPrice = 10;
 let curseurMultiplier = 1;
 
 let pickNb = 0;
-let pickPrice = 10;
+let pickPrice = 100;
 let pickMultiplier = 1;
+
+let serverNb = 0;
+let serverPrice = 1000;
+let serverMultiplier = 1;
+
+let dataNb = 0;
+let dataPrice = 10000;
+let dataMultiplier = 1;
+
+let nasaNb = 0;
+let nasaPrice = 100000;
+let nasaMultiplier = 1;
+
+let quanticNb = 0;
+let quanticPrice = 500000;
+let quanticMultiplier = 1;
 
 let bitcoinNb = 0;
 
@@ -23,8 +39,22 @@ const curseurPriceDisplay = document.querySelector("#curseur-price");
 const pickBtn = document.querySelector("#pickaxe-btn");
 const pickPriceDisplay = document.querySelector("#pickaxe-price");
 
+const serverBtn = document.querySelector("#server-btn");
+const serverPriceDisplay = document.querySelector("#server-price");
+
+const dataBtn = document.querySelector("#data-btn");
+const dataPriceDisplay = document.querySelector("#data-price");
+
+const nasaBtn = document.querySelector("#nasa-btn");
+const nasaPriceDisplay = document.querySelector("#nasa-price");
+
+const quanticBtn = document.querySelector("#quantic-btn");
+const quanticPriceDisplay = document.querySelector("#quantic-price");
+
 const bitcoinBtn = document.querySelector('#bitcoin');
+const bitcoinReverseBtn = document.querySelector('#bitcoinReverse');
 const bitcoinPriceDisplay = document.querySelector('#bitcoinPriceDisplay');
+const bitcoinNbDisplay = document.querySelector("#bitcoinNbDisplay");
 
 function getBitcoinPriceData() {
     const url = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3';
@@ -137,6 +167,54 @@ if (localStorage.getItem('pickNb') !== null) {
     }
 }
 
+if (localStorage.getItem('serverPrice') !== null) {
+    serverPrice = parseInt(localStorage.getItem('serverPrice'));
+    serverPriceDisplay.textContent = Math.trunc(serverPrice);
+}
+
+if (localStorage.getItem('serverNb') !== null) {
+    serverNb = parseInt(localStorage.getItem('serverNb'))
+    for (let i = 0; i < serverNb; i++) {
+        setInterval(cookieClick, 1000)
+    }
+}
+
+if (localStorage.getItem('dataPrice') !== null) {
+    dataPrice = parseInt(localStorage.getItem('dataPrice'));
+    dataPriceDisplay.textContent = Math.trunc(dataPrice);
+}
+
+if (localStorage.getItem('dataNb') !== null) {
+    dataNb = parseInt(localStorage.getItem('dataNb'))
+    for (let i = 0; i < dataNb; i++) {
+        setInterval(cookieClick, 1000)
+    }
+}
+
+if (localStorage.getItem('nasaPrice') !== null) {
+    nasaPrice = parseInt(localStorage.getItem('nasaPrice'));
+    nasaPriceDisplay.textContent = Math.trunc(nasaPrice);
+}
+
+if (localStorage.getItem('nasaNb') !== null) {
+    nasaNb = parseInt(localStorage.getItem('nasaNb'))
+    for (let i = 0; i < nasaNb; i++) {
+        setInterval(cookieClick, 1000)
+    }
+}
+
+if (localStorage.getItem('quanticPrice') !== null) {
+    quanticPrice = parseInt(localStorage.getItem('quanticPrice'));
+    quanticPriceDisplay.textContent = Math.trunc(quanticPrice);
+}
+
+if (localStorage.getItem('quanticNb') !== null) {
+    quanticNb = parseInt(localStorage.getItem('quanticNb'))
+    for (let i = 0; i < quanticNb; i++) {
+        setInterval(cookieClick, 1000)
+    }
+}
+
 if (localStorage.getItem('bitcoinNb') !== null) {
     bitcoinNb = parseInt(localStorage.getItem('bitcoinNb'))
 }
@@ -147,8 +225,15 @@ function updateStorage() {
     localStorage.setItem('curseurPrice', curseurPrice);
     localStorage.setItem('pickPrice', pickPrice)
     localStorage.setItem('pickNb', pickNb)
+    localStorage.setItem('serverPrice', serverPrice)
+    localStorage.setItem('serverNb', serverNb)
+    localStorage.setItem('dataPrice', dataPrice)
+    localStorage.setItem('dataNb', dataNb)
+    localStorage.setItem('nasaPrice', nasaPrice)
+    localStorage.setItem('nasaNb', nasaNb)
+    localStorage.setItem('quanticPrice', quanticPrice)
+    localStorage.setItem('quanticNb', quanticNb)
     localStorage.setItem('bitcoinNb', bitcoinNb)
-    localStorage.setItem('bitcoinPrice', bitcoinPrice)
 }
 
 function updateCountDisplay() {
@@ -174,7 +259,7 @@ function curseurClick() {
         clickNb += 1;
         updateCountDisplay();
         updateStorage();
-        setInterval(cookieClick, 2500)
+        setInterval(cookieClick, 10000)
     }
 }
 
@@ -187,7 +272,59 @@ function pickaxeClick() {
         pickNb += 1;
         updateCountDisplay();
         updateStorage();
-        setInterval(cookieClick, 1500)
+        setInterval(cookieClick, 8000)
+    }
+}
+
+function serverClick() {
+    if (count >= serverPrice) {
+        count -= serverPrice;
+        serverPrice += 50 + serverMultiplier;
+        serverMultiplier++
+        serverPriceDisplay.textContent = serverPrice;
+        serverNb += 1;
+        updateCountDisplay();
+        updateStorage();
+        setInterval(cookieClick, 5000)
+    }
+}
+
+function dataClick() {
+    if (count >= dataPrice) {
+        count -= dataPrice;
+        dataPrice += 50 + dataMultiplier;
+        dataMultiplier++
+        dataPriceDisplay.textContent = dataPrice;
+        dataNb += 1;
+        updateCountDisplay();
+        updateStorage();
+        setInterval(cookieClick, 3000)
+    }
+}
+
+function nasaClick() {
+    if (count >= nasaPrice) {
+        count -= nasaPrice;
+        nasaPrice += 50 + nasaMultiplier;
+        nasaMultiplier++
+        nasaPriceDisplay.textContent = nasaPrice;
+        nasaNb += 1;
+        updateCountDisplay();
+        updateStorage();
+        setInterval(cookieClick, 1000)
+    }
+}
+
+function  quanticClick() {
+    if (count >= quanticPrice) {
+        count -=  quanticPrice;
+        quanticPrice += 50 +  quanticMultiplier;
+        quanticMultiplier++
+        quanticPriceDisplay.textContent =  quanticPrice;
+        quanticNb += 1;
+        updateCountDisplay();
+        updateStorage();
+        setInterval(cookieClick, 500)
     }
 }
 
@@ -195,11 +332,21 @@ function bitClick() {
     if (count >= bitcoinPrice) {
         count -= bitcoinPrice;
         bitcoinNb++
-        curseurPriceDisplay.textContent = curseurPrice;
-        updateCountDisplay();
         bitcoinBtn.classList.add("clicked");
         setTimeout(() => {
             bitcoinBtn.classList.remove("clicked");
+        }, 200);
+    }
+}
+
+function bitMinusClick() {
+    if (bitcoinPrice > 0) {
+        console.log("ok")
+        count += bitcoinPrice
+        bitcoinNb--
+        bitcoinReverseBtn.classList.add("clicked");
+        setTimeout(() => {
+            bitcoinReverseBtn.classList.remove("clicked");
         }, 200);
     }
 }
@@ -210,22 +357,65 @@ function gameEarn(number) {
     updateStorage();
 }
 
+function gameMinus(number) {
+    count -= number;
+    updateCountDisplay();
+    updateStorage();
+}
+
 cookie.addEventListener("click", cookieClick);
 curseurBtn.addEventListener("click", curseurClick);
 pickBtn.addEventListener("click", pickaxeClick);
+serverBtn.addEventListener("click", serverClick);
+dataBtn.addEventListener("click", dataClick);
+nasaBtn.addEventListener("click", nasaClick);
+quanticBtn.addEventListener("click",  quanticClick)
 bitcoinBtn.addEventListener("click", bitClick);
+bitcoinReverseBtn.addEventListener("click", bitMinusClick);
 
 setInterval(function () {
+
     if (count > curseurPrice) {
         curseurBtn.classList.add('unlock')
     } else {
         curseurBtn.classList.remove('unlock')
     }
+
     if (count > pickPrice) {
         pickBtn.classList.add('unlock')
     } else {
         pickBtn.classList.remove('unlock')
     }
+
+    if (count > serverPrice) {
+        serverBtn.classList.add('unlock')
+    } else {
+        serverBtn.classList.remove('unlock')
+    }
+
+    if (count > dataPrice) {
+        dataBtn.classList.add('unlock')
+    } else {
+        dataBtn.classList.remove('unlock')
+    }
+
+    if (count > nasaPrice) {
+        nasaBtn.classList.add('unlock')
+    } else {
+        nasaBtn.classList.remove('unlock')
+    }
+
+    if (count > quanticPrice) {
+        quanticBtn.classList.add('unlock')
+    } else {
+        quanticBtn.classList.remove('unlock')
+    }
+
+}, 1)
+
+setInterval(function () {
+    bitcoinNbDisplay.textContent = bitcoinNb + " Bitcoin"
 }, 1)
 
 getBitcoinPrice()
+updateStorage()
