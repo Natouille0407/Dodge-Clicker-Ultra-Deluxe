@@ -31,19 +31,30 @@
         </div>
 
         <div class="bitcoin-section">
+
             <select>
                 <option>Bitcoin</option>
-                <option>Etherum</option>
             </select>
 
-            <p id="bitcoinPriceDisplay"></p>
+            <div class="bitcoinInfoDisplay">
+
+                <p id="bitcoinNbDisplay"></p>
+                <p id="bitcoinPriceDisplay"></p>
+
+            </div>
+
             <div class="bitcoin-container">
                 <img id="bitcoin" src="assets/img/Bitcoin.jpg" alt="bitcoin">
+                <p>Buy</p>
+                <img id="bitcoinReverse" src="assets/img/Bitcoin.jpg" alt="bitcoinReverse">
+                <p>Sell</p>
             </div>
+
 
             <div class="graph-section">
                 <canvas id="CryptoChart"></canvas>
             </div>
+
         </div>
 
         <div class="shop-section">
@@ -61,6 +72,30 @@
                 <img src="assets/img/pickaxe.png" class="shop-img">
                 <h2 class="article-name">CryptoMinor</h2>
                 <p id="pickaxe-price" class="price">10</p>
+            </div>
+
+            <div class="shop-article locked" id="server-btn">
+                <img src="assets/img/server-img.png" class="shop-img">
+                <h2 class="article-name">Graphic Card</h2>
+                <p id="server-price" class="price">10</p>
+            </div>
+
+            <div class="shop-article locked" id="data-btn">
+                <img src="assets/img/datacenter.png" class="shop-img">
+                <h2 class="article-name">Data Center</h2>
+                <p id="data-price" class="price">10</p>
+            </div>
+
+            <div class="shop-article locked" id="nasa-btn">
+                <img src="assets/img/nasa.png" class="shop-img">
+                <h2 class="article-name">Nasa Computer</h2>
+                <p id="nasa-price" class="price">10</p>
+            </div>
+
+            <div class="shop-article locked" id="quantic-btn">
+                <img src="assets/img/quantic.png" class="shop-img">
+                <h2 class="article-name">Quantic Computer</h2>
+                <p id="quantic-price" class="price">10</p>
             </div>
 
         </div>
